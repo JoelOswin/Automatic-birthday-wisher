@@ -6,6 +6,13 @@ from googleapiclient.errors import HttpError
 import os
 
 def authenticate(CLIENT_FILE,SCOPES):
+    '''Authenticates the user using the token.json if it exists or creates
+    token using the CLIENT_FILE.json
+
+    Arguments:  CLIENT_FILE:string, download the client file from google console
+                SCOPES:list, check people api docs to find SCOPES
+    Returns the authenticated credentials
+    '''
     creds=None
     if os.path.exists('token.json'):
         creds=Credentials.from_authorized_user_file('token.json',SCOPES)
@@ -21,6 +28,11 @@ def authenticate(CLIENT_FILE,SCOPES):
     return creds
 
 def fetch_contacts(creds):
+    '''Fetches google contacts with the help of the authenticated credentials
+    
+    Argument: authenticated credentials
+    Returns: List of all contacts with fields: name,phoneNumbers,birthdays
+    '''
     people_service=build('people','v1',credentials=creds)
     data=[]
     next_page_token=None

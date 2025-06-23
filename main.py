@@ -1,7 +1,7 @@
 from app.api_contacts import authenticate,fetch_contacts
 from app.message_sender import matched_contacts,send_msg
 import requests
-import time,json
+import time
 
 try:
     r=requests.get('https://www.google.com/')

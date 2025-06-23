@@ -2,6 +2,11 @@ import pywhatkit
 from datetime import date,datetime
 
 def matched_contacts(contacts):
+    '''
+    Argument: list of contacts fetched from google people(contacts)
+    Returns: list of all contacts whose birthday is today with
+            name and phoneNumbers
+    '''
     final_contacts=[]
     for contact in contacts:
         temp={}
@@ -17,6 +22,10 @@ def matched_contacts(contacts):
     return final_contacts
 
 def send_msg(name,phoneNumber):
+    '''
+    Arguments: name,phoneNumber
+    Sends birthday wish to {phoneNumber} using whatsapp web
+    '''
     pywhatkit.sendwhatmsg(phoneNumber,
                         message=f"Happy Birthday {name}",
                         time_hour=int(datetime.now().strftime('%H')),
